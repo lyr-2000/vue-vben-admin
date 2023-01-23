@@ -10,6 +10,7 @@ import { t } from '/@/hooks/web/useI18n';
 const modules = import.meta.globEager('./modules/**/*.ts');
 const routeModuleList: AppRouteModule[] = [];
 
+//  导入模块列表，可以在这里隐藏
 // 加入到路由集合中
 Object.keys(modules).forEach((key) => {
   const mod = modules[key].default || {};
@@ -26,6 +27,7 @@ export const RootRoute: AppRouteRecordRaw = {
   redirect: PageEnum.BASE_HOME,
   meta: {
     title: 'Root',
+    // hideMenu: true,
   },
 };
 

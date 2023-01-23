@@ -1,6 +1,6 @@
 import { MockMethod } from 'vite-plugin-mock';
 import { resultError, resultSuccess, getRequestToken, requestParams } from '../_util';
-
+// 用户列表
 export function createFakeUserList() {
   return [
     {
@@ -13,6 +13,7 @@ export function createFakeUserList() {
       token: 'fakeToken1',
       homePath: '/dashboard/analysis',
       roles: [
+        //用户角色
         {
           roleName: 'Super Admin',
           value: 'super',
@@ -39,6 +40,7 @@ export function createFakeUserList() {
 }
 
 const fakeCodeList: any = {
+  //权限ID
   '1': ['1000', '3000', '5000'],
 
   '2': ['2000', '4000', '6000'],

@@ -61,7 +61,7 @@ const permission: AppRouteModule = {
       ],
     },
     {
-      path: 'back',
+      path: 'back', //后台权限
       name: 'PermissionBackDemo',
       component: getParentLayout('PermissionBackDemo'),
       meta: {
