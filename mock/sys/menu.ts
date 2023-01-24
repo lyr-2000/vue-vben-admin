@@ -256,7 +256,7 @@ export default [
           dashboardRoute.redirect = dashboardRoute.path + '/' + dashboardRoute.children[0].path;
           menu = [dashboardRoute, authRoute, levelRoute, sysRoute, linkRoute];
           break;
-        case '2':
+        case '2': //如果用户ID 为2 ，就不会展示 sys菜单
           dashboardRoute.redirect = dashboardRoute.path + '/' + dashboardRoute.children[1].path;
           menu = [dashboardRoute, authRoute, levelRoute, linkRoute];
           break;
