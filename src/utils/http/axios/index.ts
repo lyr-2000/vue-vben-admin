@@ -275,7 +275,18 @@ function createAxios(opt?: Partial<CreateAxiosOptions>) {
     ),
   );
 }
+
+const env = process.env.NODE_ENV;
+let baseUrl = 'http://localhost:8080/';
+if (env != 'development') {
+  baseUrl = '';
+}
+
 export const defHttp = createAxios();
+// TODO: 开发环境判断
+export const localHttp = createAxios({
+  baseURL: baseUrl,
+});
 
 // other api url
 // export const otherHttp = createAxios({

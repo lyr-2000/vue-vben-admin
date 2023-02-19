@@ -4,6 +4,7 @@ import { h } from 'vue';
 import { Tag } from 'ant-design-vue';
 import { Icon } from '/@/components/Icon';
 
+// 数据表格
 export const columns: BasicColumn[] = [
   {
     title: '菜单名称',
@@ -38,7 +39,7 @@ export const columns: BasicColumn[] = [
     dataIndex: 'status',
     width: 80,
     customRender: ({ record }) => {
-      const status = record.status;
+      const status: number = record.status;
       const enable = ~~status === 0;
       const color = enable ? 'green' : 'red';
       const text = enable ? '启用' : '停用';

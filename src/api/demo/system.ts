@@ -1,3 +1,4 @@
+// import { Menu } from '@logicflow/extension';
 import {
   AccountParams,
   DeptListItem,
@@ -9,15 +10,17 @@ import {
   AccountListGetResultModel,
   RolePageListGetResultModel,
   RoleListGetResultModel,
+  MenuListItem,
 } from './model/systemModel';
-import { defHttp } from '/@/utils/http/axios';
+import { defHttp, localHttp } from '/@/utils/http/axios';
 
 enum Api {
   AccountList = '/system/getAccountList',
   IsAccountExist = '/system/accountExist',
   DeptList = '/system/getDeptList',
   setRoleStatus = '/system/setRoleStatus',
-  MenuList = '/system/getMenuList',
+  // MenuList = '/system/getMenuList',
+  MenuList = '/v1/getMenu',
   RolePageList = '/system/getRoleListByPage',
   GetAllRoleList = '/system/getAllRoleList',
 }
@@ -29,7 +32,7 @@ export const getDeptList = (params?: DeptListItem) =>
   defHttp.get<DeptListGetResultModel>({ url: Api.DeptList, params });
 
 export const getMenuList = (params?: MenuParams) =>
-  defHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
+  localHttp.get<MenuListGetResultModel>({ url: Api.MenuList, params });
 
 export const getRoleListByPage = (params?: RolePageParams) =>
   defHttp.get<RolePageListGetResultModel>({ url: Api.RolePageList, params });
@@ -42,3 +45,10 @@ export const setRoleStatus = (id: number, status: string) =>
 
 export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
+
+export const updateMenu = (params: MenuListItem) => {
+  return localHttp.post({
+    url: '/v1/updateMenu',
+    data: params,
+  });
+};

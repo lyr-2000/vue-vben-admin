@@ -49,6 +49,11 @@ export interface MenuListItem {
   icon: string;
   component: string;
   permission: string;
+  type: number;
+  menuName: string;
+  routePath: string;
+  show: boolean;
+  isExt: boolean;
 }
 
 export interface RoleListItem {
