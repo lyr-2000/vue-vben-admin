@@ -40,7 +40,7 @@ export const columns: BasicColumn[] = [
     width: 80,
     customRender: ({ record }) => {
       const status: number = record.status;
-      const enable = ~~status === 0;
+      const enable = status === 1;
       const color = enable ? 'green' : 'red';
       const text = enable ? '启用' : '停用';
       return h(Tag, { color: color }, () => text);
@@ -53,9 +53,9 @@ export const columns: BasicColumn[] = [
   },
 ];
 
-const isDir = (type: string) => type === '0';
-const isMenu = (type: string) => type === '1';
-const isButton = (type: string) => type === '2';
+const isDir = (type: number) => type === 0;
+const isMenu = (type: number) => type === 1;
+const isButton = (type: number) => type === 2;
 
 export const searchFormSchema: FormSchema[] = [
   {
@@ -77,18 +77,18 @@ export const searchFormSchema: FormSchema[] = [
     colProps: { span: 8 },
   },
 ];
-
+//  drawer ： 表单的配置
 export const formSchema: FormSchema[] = [
   {
     field: 'type',
     label: '菜单类型',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: 0,
     componentProps: {
       options: [
-        { label: '目录', value: '0' },
-        { label: '菜单', value: '1' },
-        { label: '按钮', value: '2' },
+        { label: '目录', value: 1 },
+        { label: '菜单', value: 2 },
+        { label: '按钮', value: 3 },
       ],
     },
     colProps: { lg: 24, md: 24 },
@@ -151,11 +151,11 @@ export const formSchema: FormSchema[] = [
     field: 'status',
     label: '状态',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: 1,
     componentProps: {
       options: [
-        { label: '启用', value: '0' },
-        { label: '禁用', value: '1' },
+        { label: '启用', value: 1 },
+        { label: '禁用', value: 0 },
       ],
     },
   },
@@ -163,11 +163,11 @@ export const formSchema: FormSchema[] = [
     field: 'isExt',
     label: '是否外链',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: false,
     componentProps: {
       options: [
-        { label: '否', value: '0' },
-        { label: '是', value: '1' },
+        { label: '否', value: false },
+        { label: '是', value: true },
       ],
     },
     ifShow: ({ values }) => !isButton(values.type),
@@ -177,11 +177,11 @@ export const formSchema: FormSchema[] = [
     field: 'keepalive',
     label: '是否缓存',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: false,
     componentProps: {
       options: [
-        { label: '否', value: '0' },
-        { label: '是', value: '1' },
+        { label: '否', value: false },
+        { label: '是', value: true },
       ],
     },
     ifShow: ({ values }) => isMenu(values.type),
@@ -191,11 +191,11 @@ export const formSchema: FormSchema[] = [
     field: 'show',
     label: '是否显示',
     component: 'RadioButtonGroup',
-    defaultValue: '0',
+    defaultValue: true,
     componentProps: {
       options: [
-        { label: '是', value: '0' },
-        { label: '否', value: '1' },
+        { label: '是', value: true },
+        { label: '否', value: false },
       ],
     },
     ifShow: ({ values }) => !isButton(values.type),

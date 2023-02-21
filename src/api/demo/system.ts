@@ -46,9 +46,24 @@ export const setRoleStatus = (id: number, status: string) =>
 export const isAccountExist = (account: string) =>
   defHttp.post({ url: Api.IsAccountExist, params: { account } }, { errorMessageMode: 'none' });
 
+// 更新 菜单
 export const updateMenu = (params: MenuListItem) => {
   return localHttp.post({
     url: '/v1/updateMenu',
-    data: params,
+    data: params as MenuListItem,
+  });
+};
+// 删除
+export const deleteMenu = (params: MenuListItem) => {
+  return localHttp.post({
+    url: '/v1/delMenu',
+    data: params as MenuListItem,
+  });
+};
+
+export const addMenu = (param: MenuListItem) => {
+  return localHttp.post({
+    url: '/v1/addMenu',
+    data: param as MenuListItem,
   });
 };

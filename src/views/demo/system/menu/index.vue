@@ -33,8 +33,9 @@
   import { defineComponent, nextTick } from 'vue';
 
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
-  import { getMenuList } from '/@/api/demo/system';
-
+  import { getMenuList, deleteMenu } from '/@/api/demo/system';
+  import { MenuListItem } from '/@/api/demo/model/systemModel';
+  // } from './model/systemModel';
   import { useDrawer } from '/@/components/Drawer';
   import MenuDrawer from './MenuDrawer.vue';
 
@@ -86,7 +87,11 @@
       }
 
       function handleDelete(record: Recordable) {
-        console.log(record);
+        // var id = record.id
+        // console.log(record);
+        deleteMenu(record as MenuListItem).finally(() => {
+          reload();
+        });
       }
 
       function handleSuccess() {

@@ -16,7 +16,7 @@
   import { formSchema } from './menu.data';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
 
-  import { getMenuList, updateMenu } from '/@/api/demo/system';
+  import { getMenuList, updateMenu, addMenu } from '/@/api/demo/system';
 
   export default defineComponent({
     name: 'MenuDrawer',
@@ -61,12 +61,13 @@
           // console.log(values);
           if (isUpdate.value) {
             values.id = id.value;
-            let ret = await updateMenu(values);
-            if (ret.code > 0) {
-              console.log('error');
-            }
+            // values.status = Number(values.status);
+            await updateMenu(values);
+
+            // }
           } else {
-            console.log('create-api', values);
+            // console.log('create-api', values);
+            await addMenu(values);
           }
           closeDrawer();
           emit('success');
